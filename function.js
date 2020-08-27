@@ -86,3 +86,42 @@ for(let i = 0;i<number.length;i++){
         }
     })
 }
+
+let microphone = document.getElementById('microphone');
+microphone.onclick=function(){
+    microphone.classList.add("record");
+    let recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
+    recognition.lang = 'en-US';
+    recognition.start();
+    operations = {"plus":"+",
+				 "minus":"-",
+				 "multiply":"*",
+				 "multiplied":"*",
+				 "divide":"/",
+				 "divided":"/",
+				 "reminder":"%"}
+    recognition.onresult = function(event){
+        let input = event.results[0][0].transcript;
+        for(property in operations){
+            input= input.replace(property, operations[property]);
+        }
+        
+        document.getElementById("output_value").innerText = input;
+        setTimeout(function(){
+            evaluate(input);
+        },2000);
+        microphone.classList.remove("record");
+        }
+}
+
+
+function evaluate(input){
+	try{
+		var result = eval(input);
+		document.getElementById("output_value").innerText = result;
+	}
+	catch(e){
+		console.log(e);
+		document.getElementById("output_value").innerText = "";
+	}
+}
