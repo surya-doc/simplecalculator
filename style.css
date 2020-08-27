@@ -35,6 +35,41 @@ body{
     font-size: 30px;
 }
 
+#output_text{
+    width: 250px;
+    height: 110px;
+    float: left;
+}
+
+
+#microphone{
+    height: 30px;
+    width: 30px;
+    float: right;
+    background-image: url('microphone_1.png');
+    background-size: 100% 100%;
+    border-radius: 50%;
+    margin: 20px;
+    margin-top: 45px;
+    background-repeat: no-repeat;
+    color: deepskyblue;
+    animation: microphone_anime 1.5s infinite;
+}
+
+@keyframes microphone_anime{
+    0%{
+        transform: scale(0.9);
+    }
+    70%{
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(0,148,255,0.4);
+    }
+    100%{
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(0,148,255,0.4);
+    }
+}
+
 #keyboard{
     height: 410px;
 }
@@ -94,4 +129,31 @@ button:nth-child(16){
 button:nth-child(20){
     font-size: 20px;
     background-color: orange;
+}
+
+.tooltip{
+    width: 200px;
+    font-size: 9px;
+    background-color: #dddddd;
+    position: absolute;
+    color: #636363;
+    padding: 10px;
+    top: 65px;
+    transform: translatex(60px);
+    border-radius: 10px;
+    visibility: hidden;
+}
+
+.tooltip::before{
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 15px;
+    border-color: transparent  #dddddd transparent transparent;
+    left: 0;
+    margin-left: -20px;
+}
+
+#output_microphone:hover .tooltip{
+    visibility: visible;
 }
